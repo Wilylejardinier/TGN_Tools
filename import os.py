@@ -1,8 +1,8 @@
 import os
 from mutagen.mp3 import MP3
 from mutagen.flac import FLAC
-from mutagen.wavpack import WAV
-from mutagen.dsd import DSD
+from mutagen.wavpack import WavPack
+from mutagen.dsf import DSF
 
 def rename_folder(folder_path):
   # Get a list of all the files in the directory
@@ -10,7 +10,7 @@ def rename_folder(folder_path):
   
   # Find the first audio file in the folder
   for file in file_list:
-    if file.endswith('.mp3') or file.endswith('.flac') or file.endswith('.wav') or file.endswith('.dsd'):
+    if file.endswith('.mp3') or file.endswith('.flac') or file.endswith('.wav') or file.endswith('.dsf'):
       audio_file = file
       break
   
@@ -27,7 +27,7 @@ def rename_folder(folder_path):
   elif isinstance(audio, WavPack):
     title = audio['title'][0]
     artist = audio['artist'][0]
-  elif isinstance(audio, DSD):
+  elif isinstance(audio, DSF):
     title = audio['title'][0]
     artist = audio['artist'][0]
   
@@ -38,4 +38,4 @@ def rename_folder(folder_path):
   os.rename(folder_path, os.path.join(os.path.dirname(folder_path), new_name))
 
 # Test the function
-rename_folder('')
+rename_folder('test/')
