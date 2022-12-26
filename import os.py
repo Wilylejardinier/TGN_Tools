@@ -1,4 +1,5 @@
 import os
+import mutagen
 from mutagen.mp3 import MP3
 from mutagen.flac import FLAC
 from mutagen.wavpack import WavPack
@@ -38,4 +39,4 @@ def rename_folder(folder_path):
   os.rename(folder_path, os.path.join(os.path.dirname(folder_path), new_name))
 
 # Test the function
-rename_folder('test/')
+rename_folder('C:\\Users\\Wilylejardinier\\Desktop\\Programmation\\TGN_Tools\\test')
