@@ -9,6 +9,8 @@ def select_directory():
 
 dir_path = select_directory()
 
+output_file = open('results.txt', 'a')
+
 while True:
     file_number = int(input('Enter a file number: '))
 
@@ -20,9 +22,12 @@ while True:
     if file_number >= 0 and file_number < len(file_list):
         selected_file = file_list[file_number]
         print(selected_file)
+        output_file.write(selected_file + '\n')
     else:
         print('Invalid file number')
 
     choice = input("Do you want to select another file? (y/n) ")
     if choice.lower() == 'n':
         break
+
+output_file.close()
