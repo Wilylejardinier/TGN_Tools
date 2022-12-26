@@ -1,6 +1,13 @@
 import os
+import tkinter as tk
+from tkinter import filedialog
 
-dir_path = os.getcwd() + '/test'
+def select_directory():
+    root = tk.Tk()
+    root.withdraw()
+    return filedialog.askdirectory()
+
+dir_path = select_directory()
 
 while True:
     file_number = int(input('Enter a file number: '))
