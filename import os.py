@@ -4,6 +4,8 @@ from mutagen.mp3 import MP3
 from mutagen.flac import FLAC
 from mutagen.wavpack import WavPack
 from mutagen.dsf import DSF
+import tkinter as tk
+from tkinter import filedialog
 
 def rename_folder(folder_path):
   # Get a list of all the files in the directory
@@ -38,5 +40,23 @@ def rename_folder(folder_path):
   # Rename the folder
   os.rename(folder_path, os.path.join(os.path.dirname(folder_path), new_name))
 
-# Test the function
-rename_folder('C:\\Users\\Wilylejardinier\\Desktop\\Programmation\\TGN_Tools\\test')
+# Create the main window
+window = tk.Tk()
+
+# Create a function to open the file browser and get the selected directories
+def select_directories():
+  directories = filedialog.askdirectory(parent=window, title='Select directories to rename')
+  if directories:
+    # Split the directories into a list of individual directories
+    directories = directories.split(';')
+    
+    # Rename each directory
+    for directory in directories:
+      rename_folder(directory)
+
+# Create a button to open the file browser
+button = tk.Button(text='Select directories', command=select_directories)
+button.pack()
+
+# Run the main loop
+window.mainloop()
