@@ -37,6 +37,12 @@ def rename_folder(folder_path):
   # Construct the new name for the folder
   new_name = artist + ' - ' + title
   
+  # Add a number in parentheses to the end of the name if it already exists
+  counter = 0
+  while os.path.exists(os.path.join(os.path.dirname(folder_path), new_name)):
+    counter += 1
+    new_name = artist + ' - ' + title + ' (' + str(counter) + ')'
+  
   # Rename the folder
   os.rename(folder_path, os.path.join(os.path.dirname(folder_path), new_name))
 
