@@ -43,6 +43,9 @@ def rename_folder(folder_path):
 # Create the main window
 window = tk.Tk()
 
+# Make the window movable
+window.resizable(True, True)
+
 # Create a function to open the file browser and get the selected directories
 def select_directories():
   directories = filedialog.askdirectory(parent=window, title='Select directories to rename')
