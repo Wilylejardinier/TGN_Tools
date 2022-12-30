@@ -24,24 +24,36 @@ def rename_folder(folder_path, name_format):
   if isinstance(audio, MP3):
     title = audio['TIT2'].text[0]
     artist = audio['TPE1'].text[0]
+    album = audio['TALB'].text[0]
+    genre = audio['TCON'].text[0]
+    date = audio['TORY'].text[0]
   elif isinstance(audio, FLAC):
     title = audio['title'][0]
     artist = audio['artist'][0]
+    album = audio['album'][0]
+    genre = audio['genre'][0]
+    date = audio['date'][0]
   elif isinstance(audio, WavPack):
     title = audio['title'][0]
     artist = audio['artist'][0]
+    album = audio['album'][0]
+    genre = audio['genre'][0]
+    date = audio['date'][0]
   elif isinstance(audio, DSF):
     title = audio['title'][0]
     artist = audio['artist'][0]
-  
+    album = audio['album'][0]
+    genre = audio['genre'][0]
+    date = audio['date'][0]
+
   # Construct the new name for the folder using the specified format
-  new_name = name_format.format(artist=artist, title=title)
+  new_name = name_format.format(artist=artist, title=title, album=album, genre=genre, date=date)
   
   # Add a number in parentheses to the end of the name if it already exists
   counter = 0
   while os.path.exists(os.path.join(os.path.dirname(folder_path), new_name)):
     counter += 1
-    new_name = name_format.format(artist=artist, title=title) + ' (' + str(counter) + ')'
+    new_name = name_format.format(artist=artist, title=title, album=album, genre=genre, date=date) + ' (' + str(counter) + ')'
   
   # Rename the folder
   os.rename(folder_path, os.path.join(os.path.dirname(folder_path), new_name))
