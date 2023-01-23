@@ -45,7 +45,7 @@ def rename_folder(folder_path, name_format):
     album = audio['album'][0]
     genre = audio['genre'][0]
     date = audio['date'][0]
-
+    
   # Construct the new name for the folder using the specified format
   new_name = name_format.format(artist=artist, title=title, album=album, genre=genre, date=date)
   
@@ -57,6 +57,7 @@ def rename_folder(folder_path, name_format):
   
   # Rename the folder
   os.rename(folder_path, os.path.join(os.path.dirname(folder_path), new_name))
+  result_text.insert(tk.END, "Ancien nom : " + folder_path + " Nouveau nom : " + os.path.join(os.path.dirname(folder_path), new_name) + "\n")
 
 # Create the main window
 window = tk.Tk()
@@ -70,6 +71,7 @@ name_format_field.pack()
 
 # Create a function to open the file browser and get the selected directories
 def select_directories():
+  result_text.delete(1.0, tk.END)
   directories = filedialog.askdirectory(parent=window, title='Select directories to rename')
   if directories:
     # Split the directories into a list of individual directories
@@ -86,7 +88,9 @@ def select_directories():
 button = tk.Button(text='Select directories', command=select_directories)
 button.pack()
 
+# create a text area to show the results of renaming
+result_text = tk.Text(window)
+result_text.pack()
+
 # Run the main loop
 window.mainloop()
-
-   
