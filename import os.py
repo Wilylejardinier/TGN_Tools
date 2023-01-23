@@ -71,7 +71,7 @@ name_format_field.pack()
 
 # Create a function to open the file browser and get the selected directories
 def select_directories():
-  result_text.delete(1.0, tk.END)
+  result_text.delete(tk.END)
   directories = filedialog.askdirectory(parent=window, title='Select directories to rename')
   if directories:
     # Split the directories into a list of individual directories
@@ -92,5 +92,10 @@ button.pack()
 result_text = tk.Text(window)
 result_text.pack()
 
+# add a button to clear the text area 
+clear_button = tk.Button(text='Clear results', command=lambda: result_text.delete(1.0, tk.END))
+clear_button.pack()
+
 # Run the main loop
 window.mainloop()
+
